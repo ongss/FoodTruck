@@ -1,5 +1,8 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var mapStorage = require('./storage/mapStorage')
+
+// our google map api key :AIzaSyBhLGO469q-32KaFQ-AisNCs4EYgIx6ldU
 
 class Layout extends React.Component{
 	constructor(props) {
@@ -7,9 +10,32 @@ class Layout extends React.Component{
 	}
 	render(){
 		return(
-			<div className="container-fulid">
-				<h1> SAY HI! </h1>
+			<div className="myapp">
+				<NavigationBar />
+				<Map />
 			</div>
+		);
+	}
+}
+
+class Map extends React.Component{
+	constructor(props) {
+		super(props);
+	}
+
+	render(){
+		return(
+			<div id="map" ></div>
+		);
+	}
+}
+
+class NavigationBar extends React.Component{
+	render(){
+		return(
+			<nav>
+				Hello
+			</nav>
 		);
 	}
 }

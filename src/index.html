@@ -2,12 +2,30 @@
 <html>
 <head>
 	<title>FoodTruck</title>
-		<script type="text/javascript" src="./jquery/dist/jquery.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="./bootstrap-3.3.7-dist/css/bootstrap.min.css">
-		<script type="text/javascript" src="./bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./jquery/dist/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="./bootstrap-3.3.7-dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./main.css">
+	<style>
+      #map,#app,.myapp {
+        height: 100%;
+      }
+      nav {
+		height: 40px;
+		width: 100%;
+		position: fixed;
+		z-index: 99;
+		background: lightgray;
+	}
+    </style>
+	<script type="text/javascript" src="./bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div id="app"></div>
-	<script type="text/javascript" src="../bundle.min.js"></script>
-</body>
+
+    <div id="app"></div>
+    <script type="text/javascript" src="../bundle.min.js"></script>
+    <script type="text/javascript" src="./test.js">
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhLGO469q-32KaFQ-AisNCs4EYgIx6ldU&callback=initMap"
+    async defer></script>
+  </body>
 </html>
