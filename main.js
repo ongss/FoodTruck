@@ -1,7 +1,11 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var mapStorage = require('./storage/mapStorage')
+var BrowserRouter = require('react-router-dom').BrowserRouter
+var Switch = require('react-router-dom').Switch
+var Route = require('react-router-dom').Route;
+var Link = require('react-router-dom').Link;
 
+var menu = [{name:"Home",ref:"home",active:""},{name:"Map",ref:"map",active:"active"},{name:"Menu",ref:"menu",active:""}];
 // our google map api key :AIzaSyBhLGO469q-32KaFQ-AisNCs4EYgIx6ldU
 
 class Layout extends React.Component{
@@ -10,13 +14,40 @@ class Layout extends React.Component{
 	}
 	render(){
 		return(
-			<div className="myapp">
-				<NavigationBar />
-				<Map />
+			<BrowserRouter>
+				<div className="myapp">
+					<NavigationBar />
+					<Map />
+				</div>
+			</BrowserRouter>
+		);
+	}
+}
+
+class Main extends React.Component{
+	constructor(props){
+		super(props);
+		this.menu = menu;
+	}
+	render(){
+		this.menu = this.menu.map(function(item,index){
+			return(
+				<Route path={"/"+item.ref} component={item.a} key={index}/>
+			);
+		}.bind(this))
+		return(
+			<div>
+				<Switch>
+					{ this.menu }
+				</Switch>
 			</div>
 		);
 	}
 }
+
+
+const home = () => (<Home />);
+
 
 class Map extends React.Component{
 	constructor(props) {
@@ -24,48 +55,66 @@ class Map extends React.Component{
 	}
 
 	render(){
-		var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-        	//13.738143, 100.533617
-          center: {lat: 13.738143, lng: 100.533617},
-          zoom: 15
-        });
-      }
 		return(
-			<div id="map" ></div>
+			<div id="map" className="map" ></div>
 		);
 	}
 }
 
+class Home extends React.Component{
+	constructor(props) {
+		super(props);
+	}
+
+	render(){
+		return(
+			<div> THIS IS Home !!</div>
+		);
+	}
+}
+
+class Menu extends React.Component{
+	constructor(props) {
+		super(props);
+	}
+
+	render(){
+		return(
+			<div> THIS IS MENU !!</div>
+		);
+	}
+}
+
+
+
 class NavigationBar extends React.Component{
 	constructor(props) {
 		super(props);
-		this.manu = [{name:"Home",ref:"home",active:""},{name:"Map",ref:"map",active:"active"},{name:"Manu",ref:"manu",active:""}];
+		this.menu = menu;
 	}
 	onSelect(item){
-		for(var i=0;i<this.manu.length;i++){
-			if(this.manu[i].name!==item){
-				this.manu[i].active = "";
+		for(var i=0;i<this.menu.length;i++){
+			if(this.menu[i].name!==item){
+				this.menu[i].active = "";
 			}
 			else{
-				this.manu[i].active = "active";
+				this.menu[i].active = "active";
 			}
 		}
 		this.forceUpdate()
 	}
 	render(){
-		this.navmanu = this.manu.map(function(item,index){
+		this.navmenu = this.menu.map(function(item,index){
 			return(<NavManu a={item.ref} name={item.name} active={item.active} key={index} onSelect={this.onSelect.bind(this)}/>);
 		}.bind(this));
 		return(
 			<nav className="navbar navbar-inverse navbar-fixed-top">
 				<div className="container-fluid">
 					<div className="navbar-header">
-						<a className="navbar-brand" href="#">Food truck</a>
+						<Link className="navbar-brand" to="/">Food truck</Link>
 					</div>
 					<ul className="nav navbar-nav navbar-right">
-						{this.navmanu}
+						{this.navmenu}
 					</ul>
 				</div>
 			</nav>
@@ -82,7 +131,7 @@ class NavManu extends React.Component{
 	}
 	render(){
 		return(
-			<li className={this.props.active}><a onClick={this.handleClick.bind(this)} href={"#"+this.props.a}>{this.props.name}</a></li>
+			<li className={this.props.active}><Link onClick={this.handleClick.bind(this)} to={"/"+this.props.a}>{this.props.name}</Link></li>
 		);
 	}
 }
