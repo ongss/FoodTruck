@@ -1,5 +1,5 @@
 module.exports = {
-	entry: __dirname + '/main.js',
+	entry: __dirname + '/component/layout.js',
 	output:{
 		path: __dirname,
 		filename: "bundle.min.js"
