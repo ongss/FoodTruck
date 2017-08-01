@@ -4,8 +4,11 @@ var BrowserRouter = require('react-router-dom').BrowserRouter
 var Switch = require('react-router-dom').Switch
 var Route = require('react-router-dom').Route;
 var Link = require('react-router-dom').Link;
+var withGoogleMap = require('react-google-maps').withGoogleMap;
+var GoogleMap = require('react-google-maps').GoogleMap;
+var Marker = require('react-google-maps').Marker; 
 
-var menu = [{name:"Home",ref:"home",active:""},{name:"Map",ref:"map",active:"active"},{name:"Menu",ref:"menu",active:""}];
+var menu = [{name:"Home",ref:"home",active:""},{name:"Map",ref:"",active:"active"},{name:"Menu",ref:"menu",active:""},{name:"Contract",ref:"contract",active:""}];
 // our google map api key :AIzaSyBhLGO469q-32KaFQ-AisNCs4EYgIx6ldU
 
 class Layout extends React.Component{
@@ -17,7 +20,7 @@ class Layout extends React.Component{
 			<BrowserRouter>
 				<div className="myapp">
 					<NavigationBar />
-					<Map />
+					<Main />
 				</div>
 			</BrowserRouter>
 		);
@@ -36,9 +39,11 @@ class Main extends React.Component{
 			);
 		}.bind(this))
 		return(
-			<div>
+			<div className="switch">
 				<Switch>
-					{ this.menu }
+					<Route path={"/home"} component={home} />
+					<Route exact path={"/"} component={map} />
+					<Route path={"/menu"} component={mymenu} />
 				</Switch>
 			</div>
 		);
@@ -47,20 +52,35 @@ class Main extends React.Component{
 
 
 const home = () => (<Home />);
+const map = () => (<GettingStartedGoogleMap
+    containerElement={
+      <div style={{ height: `100%` }} />
+    }
+    mapElement={
+      <div style={{ height: `100%` }} />
+    }
+    onMapLoad={() => {}}
+    onMapClick={() => {}}
+    onMarkerRightClick={() => {}}
+  />);
+const mymenu = () => (<Menu />);
 
-
-class Map extends React.Component{
-	constructor(props) {
-		super(props);
-	}
-
-	render(){
-		return(
-			<div id="map" className="map" ></div>
-		);
-	}
-}
-
+// const googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.27&libraries=places,geometry&key=AIzaSyBhLGO469q-32KaFQ-AisNCs4EYgIx6ldU"
+const GettingStartedGoogleMap = withGoogleMap(props => (
+  <GoogleMap
+    ref={props.onMapLoad}
+    defaultZoom={15}
+    defaultCenter={{lat: 13.738143, lng: 100.533617}}
+    onClick={props.onMapClick}
+  >
+    {/*props.markers.map((marker, index) => (
+      <Marker
+        {...marker}
+        onRightClick={() => props.onMarkerRightClick(index)}
+      />
+    ))*/}
+  </GoogleMap>
+));
 class Home extends React.Component{
 	constructor(props) {
 		super(props);
