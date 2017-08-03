@@ -1,13 +1,11 @@
 var React = require('react');
 var Switch = require('react-router-dom').Switch
 var Route = require('react-router-dom').Route;
-var withGoogleMap = require('react-google-maps').withGoogleMap;
 var MyMap = require('./map.js');
 var Home = require('./home.js');
 var Contract = require('./contract.js');
 var Menu = require('./menu.js')
 
-MyMap = withGoogleMap(MyMap);
 
 const home = () => (<Home />);
 const mymenu = () => (<Menu />);

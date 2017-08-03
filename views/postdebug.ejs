@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>POST debugger</title>
+</head>
+<body>
+    <h1>POST debugger</h1>
+    <h2>truck/update</h2>
+    <form method="POST" action="/api/v1/post/truck/update">
+        <p><label>Truck ID: <input type="text" name="id" placeholder="id"></label></p>
+        <p><label>X-Position: <input type="text" name="pos_x" placeholder="pos_x"></label></p>
+        <p><label>Y-Position: <input type="text" name="pos_y" placeholder="pos_y"></label></p>
+        <p><label><input type="submit"></label></p>
+    </form>
+    <h2>food/add</h2>
+    <form method="POST" action="/api/v1/post/food/add">
+        <p><label>Truck ID: <input type="text" name="truck_id" placeholder="truck_id"></label></p>
+        <p><label>Food Name: <input type="text" name="food_name" placeholder="food_name"></label></p>
+        <p><label><input type="submit"></label></p>
+    </form>
+    <h2>food/update</h2>
+    <form method="POST" action="/api/v1/post/food/update">
+        <p><label>Food ID: <input type="text" name="id" placeholder="id"></label></p>
+        <p><label>Food Name: <input type="text" name="food_name" placeholder="food_name"></label></p>
+        <p><label><input type="submit"></label></p>
+    </form>
+</body>
+</html>

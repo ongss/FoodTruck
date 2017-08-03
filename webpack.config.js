@@ -1,7 +1,7 @@
 module.exports = {
 	entry: __dirname + '/component/layout.js',
 	output:{
-		path: __dirname,
+		path: __dirname+'/src',
 		filename: "bundle.min.js"
 	},
 	module:{

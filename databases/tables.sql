@@ -1,0 +1,21 @@
+CREATE TABLE `truck` (
+	`id` SMALLINT(6) NOT NULL PRIMARY KEY,
+	`last_updated` DATETIME NOT NULL,
+	`pos_x` DOUBLE NOT NULL,
+	`pos_y` DOUBLE NOT NULL
+);
+
+CREATE TABLE `location` (
+	`id` INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	`truck_id` SMALLINT(6) NOT NULL,
+	`last_updated` DATETIME NOT NULL,
+	`pos_x` DOUBLE NOT NULL,
+	`pos_y` DOUBLE NOT NULL
+);
+
+CREATE TABLE `food` (
+	`id` INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	`name` VARCHAR(50) NOT NULL,
+	`truck_id` SMALLINT(6) NOT NULL,
+	`date` DATE NOT NULL
+);
