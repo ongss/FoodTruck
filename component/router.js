@@ -21,8 +21,8 @@ module.exports = class Router extends React.Component{
 		return(
 			<div className="switch">
 				<Switch>
-					<Route path={"/home"} component={home} />
-					<Route exact path={"/"} component={map} />
+					<Route exact path={"/"} component={home} />
+					<Route path={"/map"} component={map} />
 					<Route path={"/menu"} component={mymenu} />
 				</Switch>
 			</div>

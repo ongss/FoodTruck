@@ -8,8 +8,8 @@ var app = express();
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname+'/src'));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.get('/',function(req,res){
-	res.sendFile(path.join(__dirname+'/src/index.html'))	;
+app.get('*',function(req,res){
+	res.sendFile(path.join(__dirname+'/src/index.html'));
 });
 router(app);
 
